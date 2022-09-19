@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: kvrhdn/gha-buildevents@v1
+      - uses: kvrhdn/gha-buildevents@v2
         with:
           apikey: ${{ secrets.HONEYCOMBIO_APIKEY }}
           dataset: ${{ secrets.HONEYCOMBIO_DATASET_URL_ENCODED }}
@@ -40,7 +40,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: kvrhdn/gha-buildevents@main
+      - uses: kvrhdn/gha-buildevents@v2
         with:
           apikey: ${{ secrets.HONEYCOMBIO_APIKEY }}
           dataset: ${{ secrets.HONEYCOMBIO_DATASET_URL_ENCODED }}
