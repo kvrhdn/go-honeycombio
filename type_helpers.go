@@ -1,5 +1,7 @@
 package honeycombio
 
+import "time"
+
 // BoolPtr returns a pointer to the given bool
 func BoolPtr(v bool) *bool {
 	return &v
@@ -32,5 +34,10 @@ func SortOrderPtr(v SortOrder) *SortOrder {
 
 // StringPtr returns a pointer to the given string.
 func StringPtr(v string) *string {
+	return &v
+}
+
+// TimePtr returns a pointer to the given time.
+func TimePtr(v time.Time) *time.Time {
 	return &v
 }
