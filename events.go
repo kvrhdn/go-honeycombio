@@ -11,7 +11,7 @@ import (
 // API docs: https://docs.honeycomb.io/api/events/
 type Events interface {
 	// Send a single event to this dataset.
-	Send(ctx context.Context, dataset string, data map[string]interface{}) error
+	Send(ctx context.Context, dataset string, data interface{}) error
 
 	// SendBatch sends batch of events to this dataset
 	SendBatch(ctx context.Context, dataset string, data []SendBatchRequest) ([]SendBatchResponse, error)
@@ -27,9 +27,9 @@ var _ Events = (*events)(nil)
 
 // SendBatchRequest represents event batch request body
 type SendBatchRequest struct {
-	Time       *time.Time             `json:"time,omitempty"`
-	SampleRate int                    `json:"samplerate,omitempty"`
-	Data       map[string]interface{} `json:"data"`
+	Time       *time.Time  `json:"time,omitempty"`
+	SampleRate int         `json:"samplerate,omitempty"`
+	Data       interface{} `json:"data"`
 }
 
 // SendBatchRequest represents event batch response body
@@ -38,7 +38,7 @@ type SendBatchResponse struct {
 }
 
 // Send a single event to this dataset.
-func (s *events) Send(ctx context.Context, dataset string, data map[string]interface{}) error {
+func (s *events) Send(ctx context.Context, dataset string, data interface{}) error {
 	return s.client.performRequest(ctx, "POST", "/1/events/"+urlEncodeDataset(dataset), data, nil)
 }
 
